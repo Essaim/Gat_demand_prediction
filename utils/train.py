@@ -23,9 +23,8 @@ def train_model(model: nn.Module,
                    device,
                    max_grad_norm: float = None,
                    early_stop_steps: float = None):
-    bike_normal, taxi_normal = normal[0], normal[1]
     save_path = os.path.join(folder, 'best_model.pkl')
-
+    bike_normal, taxi_normal = normal[0], normal[1]
     if os.path.exists(save_path):
         save_dict = torch.load(save_path)
 
@@ -79,7 +78,6 @@ def train_model(model: nn.Module,
                             optimizer.step()
 
                     with torch.no_grad():
-                        # predictions.append(scaler.inverse_transform(outputs).cpu().numpy())
                         predictions.append(outputs.cpu().numpy())
 
                     running_loss[phase] += loss * len(targets)
