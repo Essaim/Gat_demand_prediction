@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" showNewOnSourceInSync="false">
+    <serverData>
+      <paths name="yejunchen@10.2.9.100:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/yejunchen/workspace/Gat_demand_prediction" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="yejunchen@219.224.165.132:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/yejunchen/workspace/Gat_demand_prediction" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

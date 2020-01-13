@@ -1,0 +1,58 @@
+name: H_GAT
+
+device: '1'
+data:
+  dataset: nogrid
+  batch_size: 20
+  X_list: [8,7,6,5,4,3,2,1]
+  Y_list: [0]
+  _len: [672,672]
+
+train:
+  epochs: 100
+  max_grad_norm: 5
+  early_stop_steps: 10
+
+optimizer:
+  name: Adam
+  Adam:
+    lr: 0.001
+    weight_decay: 0.001
+    eps: 0.001
+    amsgrad: true
+  RMSprop:
+    lr: 0.01
+    weight_decay: 0.001
+
+loss:
+  name: rmse
+  rmse:
+    concate_num: 250
+
+model:
+  name: H_GAT
+  H_GAT:
+    layer_num: 2
+    node_num: 516
+    concate_num: 250
+    predict_dim: 2
+    in_dim: 2
+    out_dim: 2
+    graph_weight_dim: 1
+    num_head: 3
+    merge: mean
+
+
+scheduler:
+  name: ReduceLROnPlateau
+  ReduceLROnPlateau:
+    factor: 0.2
+    patience: 5
+    threshold: 0.001
+    min_lr: 0.000001
+  StepLR:
+    step_size: 10
+    gamma: 0.1
+  MultiStepLR:
+    milestones: [1, 5, 10, 15, 20]
+    gamma: 0.1

@@ -1,0 +1,58 @@
+name: STG2Seq
+
+device: 2
+data:
+  dataset: nogrid
+  batch_size: 32
+  X_list: [12,11,10,9,8,7,6,5,4,3,2,1]
+  Y_list: [0,1,2,3,4,5,6,7,8,9,10,11]
+  _len: [672,672]
+
+train:
+  epochs: 200
+  max_grad_norm: 5
+  early_stop_steps: 10
+
+optimizer:
+  name: Adam
+  Adam:
+    lr: 0.001
+    weight_decay: 0.0005
+    eps: 0.001
+    amsgrad: true
+  RMSprop:
+    lr: 0.01
+    weight_decay: 0.001
+
+loss:
+  name: rmse
+
+model:
+  name: STG2Seq
+  STG2Seq:
+    n_pred: 12
+    n_hist: 12
+    input_dim: 2
+    hidden_dim: 64
+    adaptive_dim: 10
+    output_dim: 2
+    node_num: 250
+    patch_size: 3
+    sliding_window: 3
+    longterm_len: 3
+    shortterm_len: 3
+    cl_decay_steps: 150
+
+scheduler:
+  name: ReduceLROnPlateau
+  ReduceLROnPlateau:
+    factor: 0.2
+    patience: 5
+    threshold: 0.001
+    min_lr: 0.000001
+  StepLR:
+    step_size: 10
+    gamma: 0.1
+  MultiStepLR:
+    milestones: [1, 5, 10, 15, 20]
+    gamma: 0.1
