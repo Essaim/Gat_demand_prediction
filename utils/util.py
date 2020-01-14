@@ -11,10 +11,11 @@ def get_optimizer(opt_name,par, lr):
     else:
         print("no optimizer")
 
-def loss_calculate(y, y_pred, running_loss, phase, loss_func, channel_num):
-    for i in range(channel_num):
-        running_loss[phase][i] += loss_func(y[:,i], y_pred[:,i])* y.size(0)
-    running_loss[phase][channel_num] += loss_func(y, y_pred) * y.size(0)
+def loss_calculate(y, y_pred, running_loss, phase,node_num, loss_func):
+    bike_node,taxi_node = node_num[0],node_num[1]
+    running_loss[phase][0] += loss_func(y[:,:bike_node],y_pred[:,:bike_node]) * y.size(0)
+    running_loss[phase][1] += loss_func(y[:, bike_node:], y_pred[:, bike_node:]) * y.size(0)
+    running_loss[phase][2] += loss_func(y, y_pred) * y.size(0)
     return running_loss
 
 

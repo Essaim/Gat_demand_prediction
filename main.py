@@ -86,6 +86,7 @@ def train(conf, data_category):
                        dataloaders=data_loader,
                        trainer=trainer,
                        optimizer=optimizer,
+                       normal=normal,
                        scheduler=scheduler,
                        folder=save_folder,
                        tensorboard_folder=run_folder,
